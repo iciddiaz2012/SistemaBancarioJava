@@ -3,7 +3,7 @@ public class CuentaNoEncontradaException extends Exception{
     private String numeroCuenta;
 
     public CuentaNoEncontradaException(String numeroCuenta) {
-        super("Cuenta no encontrada: " + numeroCuenta);
+        super("Cuenta: " + numeroCuenta);
         this.numeroCuenta = numeroCuenta;
     }
 

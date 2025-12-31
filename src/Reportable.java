@@ -1,6 +1,6 @@
 public interface Reportable {
 
     String generarReporte();
-    void mostrarEstado();
 
+    void mostrarEstado();
 }

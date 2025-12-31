@@ -4,7 +4,7 @@ public class LimiteTransaccionException extends Exception{
     private double limiteMaximo;
 
     public LimiteTransaccionException(double montoTransaccion, double limiteMaximo) {
-        super("Monto de la transacción: $ " + montoTransaccion + " Limite excedido: $" + limiteMaximo);
+        super("Montero de la transacción: " + montoTransaccion + " Limite excedido: " + limiteMaximo);
         this.montoTransaccion = montoTransaccion;
         this.limiteMaximo = limiteMaximo;
     }
