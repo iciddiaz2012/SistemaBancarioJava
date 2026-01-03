@@ -4,16 +4,16 @@ public class LimiteTransaccionException extends Exception{
     private double limiteMaximo;
 
     public LimiteTransaccionException(double montoTransaccion, double limiteMaximo) {
-        super("Montero de la transacción: " + montoTransaccion + " Limite excedido: " + limiteMaximo);
+        super("Transacción de $" + montoTransaccion + " excede el límite de $" + limiteMaximo);
         this.montoTransaccion = montoTransaccion;
         this.limiteMaximo = limiteMaximo;
     }
 
-    public LimiteTransaccionException(String message) {
-        super(message);
+    public LimiteTransaccionException(String mensaje) {
+        super(mensaje);
     }
 
-    public double getExceso(){
+    public double getExceso() {
         return montoTransaccion - limiteMaximo;
     }
 
@@ -24,4 +24,5 @@ public class LimiteTransaccionException extends Exception{
     public double getLimiteMaximo() {
         return limiteMaximo;
     }
+
 }

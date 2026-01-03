@@ -3,17 +3,17 @@ public class SaldoInsuficienteException extends Exception{
     private double saldoActual;
     private double montoRequerido;
 
-    public SaldoInsuficienteException(String message, double saldoActual, double montoRequerido) {
-        super(message);
+    public SaldoInsuficienteException(String mensaje, double saldoActual, double montoRequerido) {
+        super(mensaje);
         this.saldoActual = saldoActual;
         this.montoRequerido = montoRequerido;
     }
 
-    public SaldoInsuficienteException(String message) {
-        super(message);
+    public SaldoInsuficienteException(String mensaje) {
+        super(mensaje);
     }
 
-    public double getDeficit(){
+    public double getDeficit() {
         return montoRequerido - saldoActual;
     }
 
@@ -24,4 +24,5 @@ public class SaldoInsuficienteException extends Exception{
     public double getMontoRequerido() {
         return montoRequerido;
     }
+
 }

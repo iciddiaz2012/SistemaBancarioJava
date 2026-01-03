@@ -12,51 +12,52 @@ public abstract class CuentaBancaria {
     public CuentaBancaria(String numeroCuenta, String titular, double saldoInicial, double limiteTransaccion)
             throws TransaccionInvalidaException {
         if (saldoInicial < 0) {
-            throw  new TransaccionInvalidaException("El saldo inicial no puede ser negativo");
+            throw new TransaccionInvalidaException("El saldo inicial no puede ser negativo");
         }
         this.numeroCuenta = numeroCuenta;
         this.titular = titular;
         this.saldo = saldoInicial;
-        this.bloqueada = false;
         this.limiteTransaccion = limiteTransaccion;
+        this.bloqueada = false;
         this.historialTransacciones = new ArrayList<>();
         registrarTransaccion("Cuenta creada con saldo inicial: $" + saldoInicial);
-
     }
 
+    // Métodos abstractos
     public abstract double calcularComision();
-
     public abstract String obtenerTipoCuenta();
 
-    protected void registrarTransaccion(String descripcion){
+    // Métodos concretos
+    protected void registrarTransaccion(String descripcion) {
         historialTransacciones.add(descripcion);
     }
 
-    public void bloquear(String motivo){
+    public void bloquear(String motivo) {
         this.bloqueada = true;
         registrarTransaccion("Cuenta bloqueada: " + motivo);
     }
 
-    public void desbloquear(){
+    public void desbloquear() {
         this.bloqueada = false;
         registrarTransaccion("Cuenta desbloqueada");
     }
 
-    protected void validarMonto(double monto) throws TransaccionInvalidaException{
-        if (monto <= 0){
-            throw  new TransaccionInvalidaException("El monto debe ser mayor a cero");
+    protected void validarMonto(double monto) throws TransaccionInvalidaException {
+        if (monto <= 0) {
+            throw new TransaccionInvalidaException("El monto debe ser mayor a cero");
         }
-        if (Double.isNaN(monto) || Double.isInfinite(monto)){
+        if (Double.isNaN(monto) || Double.isInfinite(monto)) {
             throw new TransaccionInvalidaException("El monto no es un número válido");
         }
     }
 
-    protected void validarCuentaActiva() throws CuentaBloqueadaException{
-        if (bloqueada){
-            throw new CuentaBloqueadaException(numeroCuenta,"Cuenta bloqueada");
+    protected void validarCuentaActiva() throws CuentaBloqueadaException {
+        if (bloqueada) {
+            throw new CuentaBloqueadaException(numeroCuenta, "Cuenta bloqueada");
         }
     }
 
+    // Getters y setters
     public String getNumeroCuenta() {
         return numeroCuenta;
     }
@@ -69,7 +70,7 @@ public abstract class CuentaBancaria {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
+    protected void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
@@ -82,6 +83,7 @@ public abstract class CuentaBancaria {
     }
 
     public ArrayList<String> getHistorialTransacciones() {
-        return historialTransacciones;
+        return new ArrayList<>(historialTransacciones);
     }
+
 }
